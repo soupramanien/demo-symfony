@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block body %}
+	<h1>Liste des produits</h1>
 	<table class="table">
 		<thead>
 			<tr>
@@ -21,7 +22,7 @@
 					<td>{{p.prix}}</td>
 					<td>
 						{# <button data-href="{{ path('produit_delete', {'id': p.id })}}" class="btn btn-danger deleteBtn">
-																									Supprimer</button> #}
+																															Supprimer</button> #}
 
 						<a href="/panier/add" class="btn btn-warning addBtnPanier" data-id="{{p.id}}">Ajouter au panier</a>
 					</td>

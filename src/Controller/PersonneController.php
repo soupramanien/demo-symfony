@@ -12,8 +12,9 @@ use App\Form\PersonneType;
 use App\Form\PersonneTypeV2;
 use App\Service\FullnameService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
+
 /**
-    *@IsGranted("ROLE_ADMIN")
+ *@IsGranted("ROLE_ADMIN")
  */
 class PersonneController extends AbstractController
 {
@@ -21,7 +22,7 @@ class PersonneController extends AbstractController
     #[Route('/personne', name: 'personne')]
     public function index(FullnameService $fullnameService): Response
     {
-        $repo =$this->getDoctrine()->getRepository(Personne::class);
+        $repo = $this->getDoctrine()->getRepository(Personne::class);
         $personnes = $repo->findAll();
         // $fullnameService = new FullnameService();
         foreach ($personnes as $p) {
@@ -42,7 +43,7 @@ class PersonneController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($personne);
             $em->flush();
-            return $this->redirectToRoute("personne"); 
+            return $this->redirectToRoute("personne");
         }
         return $this->render('personne/add.html.twig', [
             'form' => $form->createView(),
@@ -59,7 +60,7 @@ class PersonneController extends AbstractController
             $em = $this->getDoctrine()->getManager();
             $em->persist($personne);
             $em->flush();
-            return $this->redirectToRoute("personne"); 
+            return $this->redirectToRoute("personne");
         }
         return $this->render('personne/addV2.html.twig', [
             'form' => $form->createView(),
@@ -73,7 +74,4 @@ class PersonneController extends AbstractController
         $em->flush();
         return $this->redirectToRoute('personne');
     }
-
-
-
 }
