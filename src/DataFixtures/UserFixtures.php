@@ -17,19 +17,19 @@ class UserFixtures extends Fixture
     public function load(ObjectManager $manager)
     {
         $user = new User();
-        $user->setNom('wick');
-        $user->setPrenom('john');
+        $user->setNom('BOUVANESVARY');
+        $user->setPrenom('Soupramanien');
         $user->setDateInscription(new \DateTime());
-        $user->setEmail('wick@wick.us');
-        $user->setRoles (['ROLE_ADMIN']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'wick'));
+        $user->setEmail('soupra@test.fr');
+        $user->setRoles(['ROLE_ADMIN']);
+        $user->setPassword($this->passwordEncoder->encodePassword($user, 'test'));
         $manager->persist($user);
         $user2 = new User();
-        $user2->setNom('john');
-        $user2->setPrenom('wick');
+        $user2->setNom('toto');
+        $user2->setPrenom('titi');
         $user2->setDateInscription(new \DateTime("2020-12-24"));
-        $user2->setEmail('john@john.us');
-        $user2->setPassword($this ->passwordEncoder->encodePassword($user2, 'john'));
+        $user2->setEmail('toto@test.fr');
+        $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'test'));
         $manager->persist($user2);
         $manager->flush();
     }
