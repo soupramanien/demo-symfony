@@ -6,7 +6,7 @@ application web développée en symfony 5
 - composer
 ## .env
 vérifier et éventuellement modifier les identifiants de la base de données : 
-- DATABASE_URL="mysql://{nom d'utilisateur}:{mod de passe}@127.0.0.1:3306/{nom de la base}"
+- DATABASE_URL="mysql://{nom d'utilisateur}:{mot de passe}@127.0.0.1:3306/{nom de la base}"
 ## Commandes à exécuter:
 - composer install
 - php bin\console doctrine:database:create
