@@ -6,7 +6,7 @@ use Symfony\Bundle\FrameworkBundle\Test\WebTestCase;
 
 class ProduitControllerTest extends WebTestCase
 {
-    public function testSomething(): void
+    public function testRouteListeProduits(): void
     {
         $client = static::createClient();
         $crawler = $client->request('GET', '/produit');
