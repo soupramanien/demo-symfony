@@ -19,4 +19,13 @@ class ProduitController extends AbstractController
             'produits' => $produits,
         ]);
     }
+    #[Route('/produit/{id}', name: 'produit_afficher')]
+    public function afficher(int $id): Response
+    {
+        $repo = $this->getDoctrine()->getRepository(Produit::class);
+        $produit = $repo->find($id);
+        return $this->render('produit/afficher.html.twig', [
+            'produit' => $produit,
+        ]);
+    }
 }
