@@ -5,14 +5,14 @@ namespace App\DataFixtures;
 use App\Entity\User;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
-use Symfony\Component\Security\Core\Encoder\UserPasswordEncoderInterface;
+use Symfony\Component\PasswordHasher\PasswordHasherInterface;
 
 class UserFixtures extends Fixture
 {
-    private $passwordEncoder;
-    public function __construct(UserPasswordEncoderInterface $passwordEncoder)
+    private $passwordHasher;
+    public function __construct(PasswordHasherInterface $passwordHasher)
     {
-        $this->passwordEncoder = $passwordEncoder;
+        $this->passwordHasher = $passwordHasher;
     }
     public function load(ObjectManager $manager)
     {
@@ -22,14 +22,14 @@ class UserFixtures extends Fixture
         $user->setDateInscription(new \DateTime());
         $user->setEmail('soupra@test.fr');
         $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->passwordEncoder->encodePassword($user, 'test'));
+        $user->setPassword($this->passwordHasher->hash('test'));
         $manager->persist($user);
         $user2 = new User();
         $user2->setNom('toto');
         $user2->setPrenom('titi');
         $user2->setDateInscription(new \DateTime("2020-12-24"));
         $user2->setEmail('toto@test.fr');
-        $user2->setPassword($this->passwordEncoder->encodePassword($user2, 'test'));
+        $user2->setPassword($this->passwordHasher->hash('test'));
         $manager->persist($user2);
         $manager->flush();
     }
