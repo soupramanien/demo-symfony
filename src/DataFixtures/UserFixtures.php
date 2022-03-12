@@ -16,21 +16,21 @@ class UserFixtures extends Fixture
     }
     public function load(ObjectManager $manager)
     {
-        $user = new User();
-        $user->setNom('BOUVANESVARY');
-        $user->setPrenom('Soupramanien');
-        $user->setDateInscription(new \DateTime());
-        $user->setEmail('soupra@test.fr');
-        $user->setRoles(['ROLE_ADMIN']);
-        $user->setPassword($this->passwordHasher->hashPassword($user, 'test'));
-        $manager->persist($user);
-        $user2 = new User();
-        $user2->setNom('toto');
-        $user2->setPrenom('titi');
-        $user2->setDateInscription(new \DateTime("2020-12-24"));
-        $user2->setEmail('toto@test.fr');
-        $user2->setPassword($this->passwordHasher->hashPassword($user, 'test'));
-        $manager->persist($user2);
-        $manager->flush();
+        // $user = new User();
+        // $user->setNom('BOUVANESVARY');
+        // $user->setPrenom('Soupramanien');
+        // $user->setDateInscription(new \DateTime());
+        // $user->setEmail('soupra@test.fr');
+        // $user->setRoles(['ROLE_ADMIN']);
+        // $user->setPassword($this->passwordHasher->hashPassword($user, 'test'));
+        // $manager->persist($user);
+        // $user2 = new User();
+        // $user2->setNom('toto');
+        // $user2->setPrenom('titi');
+        // $user2->setDateInscription(new \DateTime("2020-12-24"));
+        // $user2->setEmail('toto@test.fr');
+        // $user2->setPassword($this->passwordHasher->hashPassword($user, 'test'));
+        // $manager->persist($user2);
+        // $manager->flush();
     }
 }
