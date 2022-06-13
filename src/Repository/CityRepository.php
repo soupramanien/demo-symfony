@@ -19,6 +19,17 @@ class CityRepository extends ServiceEntityRepository
         parent::__construct($registry, City::class);
     }
 
+    /**
+     * @return City Returns highly populated City object
+     */
+    public function findHighlyPopulatedCity()
+    {
+        return $this->createQueryBuilder('c')
+            ->orderBy('c.population', 'DESC')
+            ->setMaxResults(1)
+            ->getQuery()
+            ->getSingleResult();
+    }
     // /**
     //  * @return City[] Returns an array of City objects
     //  */
