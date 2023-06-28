@@ -10,6 +10,7 @@ use Symfony\Component\Routing\Annotation\Route;
 use App\Entity\Personne;
 use App\Form\PersonneType;
 use App\Form\PersonneTypeV2;
+use App\Service\AddressCheckerService;
 use App\Service\FullnameService;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
 
@@ -18,6 +19,12 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\IsGranted;
  */
 class PersonneController extends AbstractController
 {
+    private $addressCheckerService;
+
+    public function __construct(AddressCheckerService $addressCheckerService)
+    {
+        $this->addressCheckerService = $addressCheckerService;
+    }
     //https://sharemycode.fr/8jy
     #[Route('/personne', name: 'personne')]
     public function index(FullnameService $fullnameService): Response
@@ -57,9 +64,14 @@ class PersonneController extends AbstractController
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $personne = $form->getData();
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($personne);
-            $em->flush();
+            //check mail
+            $valid = $this->addressCheckerService->checkAddress($personne->getAdresse());
+            if ($valid) {
+                $em = $this->getDoctrine()->getManager();
+                $em->persist($personne);
+                $em->flush();
+            }
+
             return $this->redirectToRoute("personne");
         }
         return $this->render('personne/addV2.html.twig', [
