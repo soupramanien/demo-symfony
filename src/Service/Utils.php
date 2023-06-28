@@ -7,6 +7,16 @@ use InvalidArgumentException;
 
 class Utils
 {
+  /**
+   * generates full name 
+   * converts prenom to lowercase and then first letter of the result to uppercase
+   * converts nom to uppercase
+   * then generates new string by adding space between prenom and nom
+   * @param nom String
+   * @param prenom String
+   * @return fullname
+   * @example prenom="SouPramanien" nom="bouvanesvary" fullname="soupramanien BOUVANESVARY"  
+   */
   static function getFullname(string $nom, string $prenom)
   {
     $nom = strtoupper($nom);
@@ -14,6 +24,10 @@ class Utils
     $prenom = ucfirst($prenom);
     return $prenom . ' ' . $nom;
   }
+  /**
+   * formats given price to euro
+   * @return  euro formatted price
+   */
   static function formatPrice(float $price)
   {
     return \NumberFormatter::formatCurrency($price, "EUR");
@@ -22,6 +36,7 @@ class Utils
   {
     return ["TAUX_REDUIT" => 5.5, "TAUX_NORMAL" => 20];
   }
+
   static function calculateTVA(float $price, string $taxType)
   {
     $taxTypes = self::getTaxTypes();
