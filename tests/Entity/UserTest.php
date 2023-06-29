@@ -16,7 +16,8 @@ class UserTest extends TestCase
         //Arrange
         $user = User::build($nom, $prenom, $email, $password);
         $validator = Validation::createValidatorBuilder()
-            ->enableAnnotationMapping()
+            ->enableAnnotationMapping(true)
+            ->addDefaultDoctrineAnnotationReader()
             ->getValidator();
 
         // Act
