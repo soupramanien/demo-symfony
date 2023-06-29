@@ -12,16 +12,18 @@ class Utils
    * converts prenom to lowercase and then first letter of the result to uppercase
    * converts nom to uppercase
    * then generates new string by adding space between prenom and nom
-   * @param nom String
-   * @param prenom String
-   * @return fullname
-   * @example prenom="SouPramanien" nom="bouvanesvary" fullname="soupramanien BOUVANESVARY"  
+   * @param string nom
+   * @param string prenom String
+   * @return string fullname
+   * @example prenom="SouPramanien" nom="bouvanesvary" fullname="Soupramanien BOUVANESVARY"  
    */
   static function getFullname(string $nom, string $prenom)
   {
-    $nom = strtoupper($nom);
-    $prenom = strtolower($prenom);
-    $prenom = ucfirst($prenom);
+    // $nom = strtoupper($nom);
+    $nom = mb_strtoupper($nom, 'UTF-8');
+    $prenom = mb_strtoupper(mb_substr($prenom, 0, 1)) . mb_substr($prenom, 1);
+    // $prenom = ucfirst($prenom);
+    $prenom = mb_strtoupper(mb_substr($prenom, 0, 1)) . mb_substr($prenom, 1);
     return $prenom . ' ' . $nom;
   }
   /**
